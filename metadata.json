@@ -1,0 +1,5 @@
+{
+  "name": "SmartFit AI (智型)",
+  "description": "An intelligent weight loss companion powered by Gemini. Features personalized meal planning, workout generation, and progress tracking.",
+  "requestFramePermissions": []
+}
