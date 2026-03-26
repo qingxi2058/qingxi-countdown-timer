@@ -1,20 +1,27 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# 到点提醒 · 下班倒计时
 
-# Run and deploy your AI Studio app
+把流逝的时间，变成可判断的进度。
 
-This contains everything you need to run your app locally.
+这是一个给打工人用的轻量网页工具。输入下班时间和月薪后，页面会实时显示倒计时、时间进度和对应的金额感知，并在临近下班时给出提醒。
 
-View your app in AI Studio: https://ai.studio/apps/drive/1on1aDppvtJZoQrMxvVF6Cd6_jLQScRAM
+在线体验：
 
-## Run Locally
+- https://qingxi-countdown-timer.vercel.app
 
-**Prerequisites:**  Node.js
+主要特点：
 
+- 实时显示距离下班还有多久
+- 支持 30 分钟提前提醒
+- 用更直观的文案和视觉状态表达“该下班了”
+- 适合直接部署成静态网页使用
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+本仓库当前保留了两部分内容：
+
+- 直接上线使用的静态页面版本
+- 早期探索时保留的扩展文件
+
+如果你只是想本地打开和体验，直接使用下面这组文件即可：
+
+- `index.html`
+- `app.js`
+- `styles.css`
