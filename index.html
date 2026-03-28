@@ -165,25 +165,43 @@
       <div class="toast" id="toast" aria-live="polite"></div>
       <div class="barrage" id="barrage" aria-hidden="true"></div>
 
-      <!-- ✅ 微信二维码弹窗 -->
+      <!-- ✅ 商务合作弹窗 -->
       <div class="qr-overlay" id="qrOverlay" onclick="closeQR()">
         <div class="qr-card" onclick="event.stopPropagation()">
           <button class="qr-close" onclick="closeQR()">✕</button>
-          <img src="wechat-qr.png" alt="清溪微信二维码" class="qr-img" />
-          <p class="qr-name">清溪</p>
-          <p class="qr-tip">扫码添加微信 · 商务合作/交流</p>
-          <button class="qr-copy-btn" onclick="copyWechat()">
-            <span id="wxCopyText">复制微信号 qingxi20250501</span>
-          </button>
+          <p class="qr-name">💼 清溪 · 商务合作</p>
+          <p class="qr-tip">AI工具开发 · 内容变现 · 流量合作</p>
+
+          <div class="qr-section">
+            <p class="qr-section-label">💚 微信扫码加好友</p>
+            <img src="wechat-qr.png" alt="清溪微信二维码" class="qr-img" />
+            <button class="qr-copy-btn" onclick="copyWechat()">
+              <span id="wxCopyText">复制微信号 qingxi20250501</span>
+            </button>
+          </div>
+
+          <div class="qr-divider"></div>
+
+          <div class="qr-links">
+            <a class="qr-link-btn qr-xhs" href="https://xhslink.com/m/3pdBcBDfYmx" target="_blank" rel="noopener noreferrer">
+              📕 小红书主页
+            </a>
+            <a class="qr-link-btn qr-dy" href="https://v.douyin.com/fZNLm0iCwfA/" target="_blank" rel="noopener noreferrer">
+              🎵 抖音主页
+            </a>
+            <a class="qr-link-btn qr-mail" href="mailto:zhangxin19940203@gmail.com?subject=商务合作咨询">
+              ✉️ 发邮件合作
+            </a>
+          </div>
         </div>
       </div>
 
       <!-- ✅ 右下角商务合作悬浮按钮 -->
       <div class="fab-container" id="fabContainer">
         <button class="fab-main" id="fabMain" onclick="toggleFab()" aria-label="联系我 / 商务合作">
-          <span class="fab-icon-open">💬</span>
+          <span class="fab-icon-open">💼</span>
           <span class="fab-icon-close">✕</span>
-          <span class="fab-label">合作</span>
+          <span class="fab-label">联系方式</span>
         </button>
         <div class="fab-menu" id="fabMenu">
           <a class="fab-item fab-xhs" href="https://xhslink.com/m/3pdBcBDfYmx" target="_blank" rel="noopener noreferrer">
@@ -195,13 +213,9 @@
             <span class="fab-item-text">抖音</span>
           </a>
           <button class="fab-item fab-wx" onclick="toggleQR(event)">
-            <span class="fab-item-icon">💚</span>
-            <span class="fab-item-text">微信扫码</span>
-          </button>
-          <a class="fab-item fab-email" href="mailto:zhangxin19940203@gmail.com?subject=商务合作咨询">
-            <span class="fab-item-icon">✉️</span>
+            <span class="fab-item-icon">💼</span>
             <span class="fab-item-text">商务合作</span>
-          </a>
+          </button>
         </div>
       </div>
 
