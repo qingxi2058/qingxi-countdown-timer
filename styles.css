@@ -663,8 +663,8 @@ body.offwork .earnings strong {
 /* ✅ 右下角悬浮商务合作按钮 */
 .fab-container {
   position: fixed;
-  bottom: 48px;
-  right: 32px;
+  bottom: 20px;
+  right: 24px;
   z-index: 9999;
   display: flex;
   flex-direction: column;
@@ -675,26 +675,26 @@ body.offwork .earnings strong {
 .fab-main {
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 13px 22px 13px 18px;
+  gap: 9px;
+  padding: 15px 26px 15px 20px;
   border-radius: 999px;
-  border: none;
-  background: rgba(255, 255, 255, 0.95);
+  border: 2.5px solid rgba(255,255,255,0.6);
+  background: #fff;
   color: #111;
   font-family: "Manrope", sans-serif;
-  font-size: 14px;
-  font-weight: 800;
-  letter-spacing: 0.06em;
+  font-size: 15px;
+  font-weight: 900;
+  letter-spacing: 0.08em;
   cursor: pointer;
-  box-shadow: 0 6px 24px rgba(0,0,0,0.45), 0 2px 8px rgba(0,0,0,0.3);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.6), 0 0 0 4px rgba(255,255,255,0.18);
   transition: all 0.22s ease;
-  animation: fab-pulse 3s ease-in-out infinite;
+  animation: fab-pulse 2.5s ease-in-out infinite;
 }
 
 .fab-main:hover {
   background: #fff;
-  box-shadow: 0 10px 36px rgba(0,0,0,0.5), 0 4px 12px rgba(0,0,0,0.3);
-  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.65), 0 0 0 6px rgba(255,255,255,0.25);
+  transform: translateY(-2px) scale(1.05);
 }
 
 .fab-icon-open { font-size: 16px; }
@@ -710,8 +710,8 @@ body.offwork .earnings strong {
 .fab-active .fab-icon-close { display: inline; }
 
 @keyframes fab-pulse {
-  0%, 100% { box-shadow: 0 6px 24px rgba(0,0,0,0.4), 0 0 0 0px rgba(255,255,255,0.3); }
-  50% { box-shadow: 0 6px 28px rgba(0,0,0,0.45), 0 0 0 6px rgba(255,255,255,0.12); }
+  0%, 100% { box-shadow: 0 8px 32px rgba(0,0,0,0.6), 0 0 0 4px rgba(255,255,255,0.18); }
+  50% { box-shadow: 0 8px 36px rgba(0,0,0,0.6), 0 0 0 8px rgba(255,255,255,0.28); }
 }
 
 .fab-menu {
@@ -763,8 +763,8 @@ body.offwork .earnings strong {
 .fab-item-text { letter-spacing: 0.04em; }
 
 @media (max-width: 600px) {
-  .fab-container { bottom: 36px; right: 20px; }
-  .fab-main { padding: 11px 18px 11px 14px; font-size: 13px; }
+  .fab-container { bottom: 16px; right: 16px; }
+  .fab-main { padding: 13px 20px 13px 16px; font-size: 14px; }
 }
 
 /* ✅ 分享区 + SEO底部 */
