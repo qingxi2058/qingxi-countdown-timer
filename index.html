@@ -189,10 +189,26 @@
             <a class="qr-link-btn qr-dy" href="https://v.douyin.com/fZNLm0iCwfA/" target="_blank" rel="noopener noreferrer">
               🎵 抖音主页
             </a>
-            <a class="qr-link-btn qr-mail" href="mailto:zhangxin19940203@gmail.com?subject=商务合作咨询">
+            <button class="qr-link-btn qr-mail" onclick="toggleEmailPopup()">
               ✉️ 发邮件合作
-            </a>
+            </button>
           </div>
+        </div>
+      </div>
+
+      <!-- ✅ 邮箱弹窗 -->
+      <div class="qr-overlay" id="emailOverlay" onclick="closeEmailPopup()">
+        <div class="qr-card" onclick="event.stopPropagation()" style="max-width:320px">
+          <button class="qr-close" onclick="closeEmailPopup()">✕</button>
+          <p class="qr-name">✉️ 商务合作邮箱</p>
+          <p class="qr-tip">AI工具开发 · 内容变现 · 流量合作<br>发邮件说明来意，48小时内回复</p>
+          <div class="email-display">zhangxin19940203@gmail.com</div>
+          <button class="qr-copy-btn" onclick="copyEmail()" style="width:100%">
+            <span id="emailCopyText">📋 复制邮箱地址</span>
+          </button>
+          <a class="qr-link-btn qr-mail" href="mailto:zhangxin19940203@gmail.com?subject=商务合作咨询" style="width:100%;box-sizing:border-box;margin-top:4px">
+            📨 直接发邮件
+          </a>
         </div>
       </div>
 
@@ -279,6 +295,32 @@
         var el = document.getElementById('wxCopyText');
         el.textContent = '✅ 已复制！去微信搜索添加';
         setTimeout(function(){ el.textContent = '复制微信号 qingxi20250501'; }, 2500);
+      }
+
+      // 邮箱弹窗
+      function toggleEmailPopup() {
+        document.getElementById('emailOverlay').classList.add('qr-show');
+      }
+      function closeEmailPopup() {
+        document.getElementById('emailOverlay').classList.remove('qr-show');
+      }
+      function copyEmail() {
+        var email = 'zhangxin19940203@gmail.com';
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(email).then(showEmailCopied).catch(function(){ fallbackEmailCopy(email); });
+        } else { fallbackEmailCopy(email); }
+      }
+      function fallbackEmailCopy(text) {
+        var ta = document.createElement('textarea');
+        ta.value = text; ta.style.position='fixed'; ta.style.opacity='0';
+        document.body.appendChild(ta); ta.select();
+        try { document.execCommand('copy'); showEmailCopied(); } catch(e){}
+        document.body.removeChild(ta);
+      }
+      function showEmailCopied() {
+        var el = document.getElementById('emailCopyText');
+        el.textContent = '✅ 已复制！';
+        setTimeout(function(){ el.textContent = '📋 复制邮箱地址'; }, 2500);
       }
 
       // 复制链接功能
