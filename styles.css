@@ -614,12 +614,57 @@ body.offwork .earnings strong {
   border-color: rgba(7, 193, 96, 0.7);
   transform: translateY(-1px);
 }
+.qr-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+.qr-section-label {
+  font-size: 12px;
+  color: var(--muted);
+  letter-spacing: 0.06em;
+}
+.qr-divider {
+  width: 100%;
+  height: 1px;
+  background: rgba(255,255,255,0.1);
+  margin: 4px 0;
+}
+.qr-links {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+.qr-link-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.15);
+  background: rgba(255,255,255,0.06);
+  color: var(--text);
+  font-family: "Manrope", sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.18s ease;
+  letter-spacing: 0.03em;
+}
+.qr-xhs:hover  { background: rgba(255,60,60,0.18); border-color: rgba(255,60,60,0.5); }
+.qr-dy:hover   { background: rgba(0,200,200,0.12); border-color: rgba(0,230,230,0.45); }
+.qr-mail:hover { background: rgba(252,163,17,0.15); border-color: rgba(252,163,17,0.5); color: var(--accent); }
 
 /* ✅ 右下角悬浮商务合作按钮 */
 .fab-container {
   position: fixed;
-  bottom: 28px;
-  right: 28px;
+  bottom: 48px;
+  right: 32px;
   z-index: 9999;
   display: flex;
   flex-direction: column;
@@ -631,44 +676,42 @@ body.offwork .earnings strong {
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 12px 20px 12px 16px;
+  padding: 13px 22px 13px 18px;
   border-radius: 999px;
-  border: 1px solid rgba(252, 163, 17, 0.5);
-  background: linear-gradient(135deg, rgba(252, 163, 17, 0.25), rgba(255, 107, 53, 0.2));
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  color: var(--text);
+  border: none;
+  background: linear-gradient(135deg, #fca311, #ff6b35);
+  color: #1a0a00;
   font-family: "Manrope", sans-serif;
   font-size: 14px;
-  font-weight: 700;
+  font-weight: 800;
   letter-spacing: 0.06em;
   cursor: pointer;
-  box-shadow: 0 8px 32px rgba(252, 163, 17, 0.3), 0 2px 8px rgba(0,0,0,0.4);
-  transition: all 0.25s ease;
-  animation: fab-pulse 3s ease-in-out infinite;
+  box-shadow: 0 6px 28px rgba(252, 163, 17, 0.65), 0 2px 8px rgba(0,0,0,0.5);
+  transition: all 0.22s ease;
+  animation: fab-pulse 2.5s ease-in-out infinite;
 }
 
 .fab-main:hover {
-  background: linear-gradient(135deg, rgba(252, 163, 17, 0.4), rgba(255, 107, 53, 0.35));
-  border-color: rgba(252, 163, 17, 0.8);
-  box-shadow: 0 12px 40px rgba(252, 163, 17, 0.45), 0 4px 12px rgba(0,0,0,0.4);
-  transform: translateY(-2px);
+  background: linear-gradient(135deg, #ffb733, #ff7d45);
+  box-shadow: 0 10px 36px rgba(252, 163, 17, 0.85), 0 4px 12px rgba(0,0,0,0.4);
+  transform: translateY(-2px) scale(1.03);
 }
 
 .fab-icon-open { font-size: 16px; }
-.fab-icon-close { font-size: 14px; display: none; }
+.fab-icon-close { font-size: 13px; display: none; }
 .fab-label { font-size: 13px; }
 
 .fab-active .fab-main {
-  background: linear-gradient(135deg, rgba(252, 163, 17, 0.4), rgba(255, 107, 53, 0.35));
+  background: linear-gradient(135deg, #ffb733, #ff7d45);
   animation: none;
+  transform: none;
 }
 .fab-active .fab-icon-open { display: none; }
 .fab-active .fab-icon-close { display: inline; }
 
 @keyframes fab-pulse {
-  0%, 100% { box-shadow: 0 8px 32px rgba(252, 163, 17, 0.3), 0 2px 8px rgba(0,0,0,0.4); }
-  50% { box-shadow: 0 8px 40px rgba(252, 163, 17, 0.55), 0 2px 8px rgba(0,0,0,0.4); }
+  0%, 100% { box-shadow: 0 6px 28px rgba(252, 163, 17, 0.6), 0 2px 8px rgba(0,0,0,0.5); }
+  50% { box-shadow: 0 8px 40px rgba(252, 163, 17, 0.95), 0 2px 8px rgba(0,0,0,0.5); }
 }
 
 .fab-menu {
@@ -720,8 +763,8 @@ body.offwork .earnings strong {
 .fab-item-text { letter-spacing: 0.04em; }
 
 @media (max-width: 600px) {
-  .fab-container { bottom: 20px; right: 16px; }
-  .fab-main { padding: 10px 16px 10px 14px; font-size: 13px; }
+  .fab-container { bottom: 36px; right: 20px; }
+  .fab-main { padding: 11px 18px 11px 14px; font-size: 13px; }
 }
 
 /* ✅ 分享区 + SEO底部 */
