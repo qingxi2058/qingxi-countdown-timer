@@ -165,6 +165,33 @@
       <div class="toast" id="toast" aria-live="polite"></div>
       <div class="barrage" id="barrage" aria-hidden="true"></div>
 
+      <!-- ✅ 右下角商务合作悬浮按钮 -->
+      <div class="fab-container" id="fabContainer">
+        <button class="fab-main" id="fabMain" onclick="toggleFab()" aria-label="联系我 / 商务合作">
+          <span class="fab-icon-open">💬</span>
+          <span class="fab-icon-close">✕</span>
+          <span class="fab-label">合作</span>
+        </button>
+        <div class="fab-menu" id="fabMenu">
+          <a class="fab-item fab-xhs" href="https://xhslink.com/m/3pdBcBDfYmx" target="_blank" rel="noopener noreferrer">
+            <span class="fab-item-icon">📕</span>
+            <span class="fab-item-text">小红书</span>
+          </a>
+          <a class="fab-item fab-dy" href="https://v.douyin.com/fZNLm0iCwfA/" target="_blank" rel="noopener noreferrer">
+            <span class="fab-item-icon">🎵</span>
+            <span class="fab-item-text">抖音</span>
+          </a>
+          <button class="fab-item fab-wx" onclick="copyWechat()">
+            <span class="fab-item-icon">💚</span>
+            <span class="fab-item-text" id="wxText">微信号</span>
+          </button>
+          <a class="fab-item fab-email" href="mailto:zhangxin19940203@gmail.com?subject=商务合作咨询">
+            <span class="fab-item-icon">✉️</span>
+            <span class="fab-item-text">商务合作</span>
+          </a>
+        </div>
+      </div>
+
       <!-- ✅ 分享区 + SEO文案区 -->
       <footer class="share-footer">
         <div class="share-row">
@@ -185,6 +212,40 @@
 
     <script src="app.js"></script>
     <script>
+      // 悬浮按钮开关
+      var fabOpen = false;
+      function toggleFab() {
+        fabOpen = !fabOpen;
+        var container = document.getElementById('fabContainer');
+        container.classList.toggle('fab-active', fabOpen);
+      }
+      // 点外部关闭
+      document.addEventListener('click', function(e) {
+        if (fabOpen && !document.getElementById('fabContainer').contains(e.target)) {
+          fabOpen = false;
+          document.getElementById('fabContainer').classList.remove('fab-active');
+        }
+      });
+      // 复制微信号
+      function copyWechat() {
+        var wechat = 'qingxi20250501';
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(wechat).then(showWxCopied).catch(function(){ fallbackWx(wechat); });
+        } else { fallbackWx(wechat); }
+      }
+      function fallbackWx(text) {
+        var ta = document.createElement('textarea');
+        ta.value = text; ta.style.position='fixed'; ta.style.opacity='0';
+        document.body.appendChild(ta); ta.select();
+        try { document.execCommand('copy'); showWxCopied(); } catch(e){}
+        document.body.removeChild(ta);
+      }
+      function showWxCopied() {
+        var el = document.getElementById('wxText');
+        el.textContent = '已复制！去加我';
+        setTimeout(function(){ el.textContent = '微信号'; }, 2500);
+      }
+
       // 复制链接功能
       function handleCopyLink() {
         const url = 'https://qingxi-countdown-timer.vercel.app';

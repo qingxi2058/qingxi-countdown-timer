@@ -520,6 +520,115 @@ body.offwork .earnings strong {
   padding-right: 6px;
 }
 
+/* ✅ 右下角悬浮商务合作按钮 */
+.fab-container {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+}
+
+.fab-main {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px 12px 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(252, 163, 17, 0.5);
+  background: linear-gradient(135deg, rgba(252, 163, 17, 0.25), rgba(255, 107, 53, 0.2));
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  color: var(--text);
+  font-family: "Manrope", sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  box-shadow: 0 8px 32px rgba(252, 163, 17, 0.3), 0 2px 8px rgba(0,0,0,0.4);
+  transition: all 0.25s ease;
+  animation: fab-pulse 3s ease-in-out infinite;
+}
+
+.fab-main:hover {
+  background: linear-gradient(135deg, rgba(252, 163, 17, 0.4), rgba(255, 107, 53, 0.35));
+  border-color: rgba(252, 163, 17, 0.8);
+  box-shadow: 0 12px 40px rgba(252, 163, 17, 0.45), 0 4px 12px rgba(0,0,0,0.4);
+  transform: translateY(-2px);
+}
+
+.fab-icon-open { font-size: 16px; }
+.fab-icon-close { font-size: 14px; display: none; }
+.fab-label { font-size: 13px; }
+
+.fab-active .fab-main {
+  background: linear-gradient(135deg, rgba(252, 163, 17, 0.4), rgba(255, 107, 53, 0.35));
+  animation: none;
+}
+.fab-active .fab-icon-open { display: none; }
+.fab-active .fab-icon-close { display: inline; }
+
+@keyframes fab-pulse {
+  0%, 100% { box-shadow: 0 8px 32px rgba(252, 163, 17, 0.3), 0 2px 8px rgba(0,0,0,0.4); }
+  50% { box-shadow: 0 8px 40px rgba(252, 163, 17, 0.55), 0 2px 8px rgba(0,0,0,0.4); }
+}
+
+.fab-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: flex-end;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(10px) scale(0.95);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.fab-active .fab-menu {
+  opacity: 1;
+  pointer-events: all;
+  transform: translateY(0) scale(1);
+}
+
+.fab-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 18px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(10, 27, 37, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  color: var(--text);
+  font-family: "Manrope", sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.18s ease;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.35);
+}
+
+.fab-item:hover { transform: translateX(-4px); }
+
+.fab-xhs:hover  { border-color: rgba(255, 60, 60, 0.6); background: rgba(255, 60, 60, 0.18); }
+.fab-dy:hover   { border-color: rgba(0, 230, 230, 0.5); background: rgba(0, 200, 200, 0.12); }
+.fab-wx:hover   { border-color: rgba(7, 193, 96, 0.6); background: rgba(7, 193, 96, 0.15); color: #07c160; }
+.fab-email:hover{ border-color: rgba(252, 163, 17, 0.6); background: rgba(252, 163, 17, 0.15); color: var(--accent); }
+
+.fab-item-icon { font-size: 16px; }
+.fab-item-text { letter-spacing: 0.04em; }
+
+@media (max-width: 600px) {
+  .fab-container { bottom: 20px; right: 16px; }
+  .fab-main { padding: 10px 16px 10px 14px; font-size: 13px; }
+}
+
 /* ✅ 分享区 + SEO底部 */
 .share-footer {
   display: flex;
