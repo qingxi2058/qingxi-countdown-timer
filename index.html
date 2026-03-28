@@ -165,6 +165,19 @@
       <div class="toast" id="toast" aria-live="polite"></div>
       <div class="barrage" id="barrage" aria-hidden="true"></div>
 
+      <!-- ✅ 微信二维码弹窗 -->
+      <div class="qr-overlay" id="qrOverlay" onclick="closeQR()">
+        <div class="qr-card" onclick="event.stopPropagation()">
+          <button class="qr-close" onclick="closeQR()">✕</button>
+          <img src="wechat-qr.png" alt="清溪微信二维码" class="qr-img" />
+          <p class="qr-name">清溪</p>
+          <p class="qr-tip">扫码添加微信 · 商务合作/交流</p>
+          <button class="qr-copy-btn" onclick="copyWechat()">
+            <span id="wxCopyText">复制微信号 qingxi20250501</span>
+          </button>
+        </div>
+      </div>
+
       <!-- ✅ 右下角商务合作悬浮按钮 -->
       <div class="fab-container" id="fabContainer">
         <button class="fab-main" id="fabMain" onclick="toggleFab()" aria-label="联系我 / 商务合作">
@@ -181,9 +194,9 @@
             <span class="fab-item-icon">🎵</span>
             <span class="fab-item-text">抖音</span>
           </a>
-          <button class="fab-item fab-wx" onclick="copyWechat()">
+          <button class="fab-item fab-wx" onclick="toggleQR(event)">
             <span class="fab-item-icon">💚</span>
-            <span class="fab-item-text" id="wxText">微信号</span>
+            <span class="fab-item-text">微信扫码</span>
           </button>
           <a class="fab-item fab-email" href="mailto:zhangxin19940203@gmail.com?subject=商务合作咨询">
             <span class="fab-item-icon">✉️</span>
@@ -226,6 +239,14 @@
           document.getElementById('fabContainer').classList.remove('fab-active');
         }
       });
+      // 二维码弹窗
+      function toggleQR(e) {
+        e.stopPropagation();
+        document.getElementById('qrOverlay').classList.add('qr-show');
+      }
+      function closeQR() {
+        document.getElementById('qrOverlay').classList.remove('qr-show');
+      }
       // 复制微信号
       function copyWechat() {
         var wechat = 'qingxi20250501';
@@ -241,9 +262,9 @@
         document.body.removeChild(ta);
       }
       function showWxCopied() {
-        var el = document.getElementById('wxText');
-        el.textContent = '已复制！去加我';
-        setTimeout(function(){ el.textContent = '微信号'; }, 2500);
+        var el = document.getElementById('wxCopyText');
+        el.textContent = '✅ 已复制！去微信搜索添加';
+        setTimeout(function(){ el.textContent = '复制微信号 qingxi20250501'; }, 2500);
       }
 
       // 复制链接功能
