@@ -3,7 +3,60 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>下班倒计时屏保</title>
+
+    <!-- ✅ SEO 核心标签 -->
+    <title>下班倒计时·摸鱼神器 | 打工人专属解压工具</title>
+    <meta name="description" content="打工人专属下班倒计时工具！输入下班时间，实时显示距下班剩余时长，自动计算今日工资进度，骂人弹幕轮播解压。免费在线使用，数据仅本地计算，不上传不记录。" />
+    <meta name="keywords" content="下班倒计时,摸鱼神器,打工人工具,下班提醒,工资计算器,班味解压,骂人屏保,打工人摸鱼,下班时间,倒计时工具" />
+    <link rel="canonical" href="https://qingxi-countdown-timer.vercel.app" />
+
+    <!-- ✅ Favicon（emoji版，无需上传文件）-->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⏱</text></svg>" />
+    <meta name="theme-color" content="#0a1b25" />
+
+    <!-- ✅ Open Graph（微信/微博分享预览）-->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://qingxi-countdown-timer.vercel.app" />
+    <meta property="og:title" content="下班倒计时·骂人解压神器 | 打工人必备摸鱼工具" />
+    <meta property="og:description" content="输入下班时间，实时倒计时 + 骂人弹幕解压，还能看今天赚了多少钱💰打工人摸鱼必备，免费永久使用！" />
+    <meta property="og:image" content="https://qingxi-countdown-timer.vercel.app/og-image.png" />
+    <meta property="og:locale" content="zh_CN" />
+    <meta property="og:site_name" content="到点提醒·下班倒计时" />
+
+    <!-- ✅ Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="下班倒计时·骂人解压神器 | 打工人必备摸鱼工具" />
+    <meta name="twitter:description" content="输入下班时间，实时倒计时+骂人弹幕解压，还能看今天赚了多少钱。打工人摸鱼必备！" />
+    <meta name="twitter:image" content="https://qingxi-countdown-timer.vercel.app/og-image.png" />
+
+    <!-- ✅ 结构化数据（Google富文本搜索结果）-->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "下班倒计时·摸鱼神器",
+      "url": "https://qingxi-countdown-timer.vercel.app",
+      "description": "打工人专属下班倒计时工具，实时显示距下班剩余时长，自动计算工资进度，骂人弹幕解压。",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "Web",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "CNY"
+      },
+      "inLanguage": "zh-CN"
+    }
+    </script>
+
+    <!-- ✅ Google Analytics（替换 G-XXXXXXXXXX 为你的真实ID）-->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-L13LVT0J8F"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-L13LVT0J8F');
+    </script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -111,8 +164,63 @@
 
       <div class="toast" id="toast" aria-live="polite"></div>
       <div class="barrage" id="barrage" aria-hidden="true"></div>
+
+      <!-- ✅ 分享区 + SEO文案区 -->
+      <footer class="share-footer">
+        <div class="share-row">
+          <span class="share-label">👋 发给同事，一起摸鱼</span>
+          <div class="share-buttons">
+            <button class="share-btn share-copy" id="copyLinkBtn" onclick="handleCopyLink()">🔗 复制链接</button>
+            <a class="share-btn share-weibo"
+              href="https://service.weibo.com/share/share.php?url=https%3A%2F%2Fqingxi-countdown-timer.vercel.app&title=%E4%B8%8B%E7%8F%AD%E5%80%92%E8%AE%A1%E6%97%B6%E6%91%B8%E9%B1%BC%E7%A5%9E%E5%99%A8%EF%BC%8C%E6%89%93%E5%B7%A5%E4%BA%BA%E5%BF%85%E5%A4%87%EF%BC%81%E5%AE%9E%E6%97%B6%E5%80%92%E8%AE%A1%E6%97%B6%2B%E9%AA%82%E4%BA%BA%E5%BC%B9%E5%B9%95%E8%A7%A3%E5%8E%8B%EF%BC%8C%E8%BF%98%E8%83%BD%E7%9C%8B%E4%BB%8A%E5%A4%A9%E8%B5%9A%E4%BA%86%E5%A4%9A%E5%B0%91%E9%92%B1+%23%E6%89%93%E5%B7%A5%E4%BA%BA+%23%E6%91%B8%E9%B1%BC"
+              target="_blank" rel="noopener noreferrer">🌐 微博分享</a>
+          </div>
+        </div>
+        <!-- SEO关键词文案：对用户展示但同时被搜索引擎收录 -->
+        <p class="seo-desc">
+          下班倒计时 · 打工人摸鱼神器 · 班味解压 · 今日工资进度 · 提前30分钟提醒 · 骂人弹幕屏保 · 免费在线工具
+        </p>
+      </footer>
     </div>
 
     <script src="app.js"></script>
+    <script>
+      // 复制链接功能
+      function handleCopyLink() {
+        const url = 'https://qingxi-countdown-timer.vercel.app';
+        const text = '下班倒计时摸鱼神器，打工人必备！' + url;
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(function() {
+            showCopyToast();
+          }).catch(function() {
+            fallbackCopy(text);
+          });
+        } else {
+          fallbackCopy(text);
+        }
+      }
+      function fallbackCopy(text) {
+        var ta = document.createElement('textarea');
+        ta.value = text;
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        try { document.execCommand('copy'); showCopyToast(); } catch(e) {}
+        document.body.removeChild(ta);
+      }
+      function showCopyToast() {
+        var btn = document.getElementById('copyLinkBtn');
+        var orig = btn.textContent;
+        btn.textContent = '✅ 已复制！去发给同事';
+        btn.style.background = 'rgba(57,255,20,0.18)';
+        btn.style.borderColor = 'rgba(57,255,20,0.5)';
+        setTimeout(function() {
+          btn.textContent = orig;
+          btn.style.background = '';
+          btn.style.borderColor = '';
+        }, 2500);
+      }
+    </script>
   </body>
 </html>
