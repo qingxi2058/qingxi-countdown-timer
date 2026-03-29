@@ -868,3 +868,25 @@ body.offwork .earnings strong {
     padding: 12px 16px 4px;
   }
 }
+
+/* ===== 清溪关注引导区 ===== */
+.qx-cta-wrap {
+  background: linear-gradient(135deg, #6c3de0 0%, #9b5cf0 100%);
+  padding: 56px 24px 48px;
+  text-align: center;
+}
+.qx-cta-box { max-width: 640px; margin: 0 auto; }
+.qx-cta-eyebrow { font-size: 13px; color: rgba(255,255,255,.72); letter-spacing: .08em; margin-bottom: 12px; }
+.qx-cta-title { font-size: clamp(20px,4vw,30px); font-weight: 700; color: #fff; margin-bottom: 8px; }
+.qx-cta-sub { font-size: 15px; color: rgba(255,255,255,.85); margin-bottom: 28px; }
+.qx-cta-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-bottom: 16px; }
+.qx-btn-xhs, .qx-btn-dy {
+  display: inline-block; padding: 13px 28px; border-radius: 50px;
+  font-size: 15px; font-weight: 600; text-decoration: none;
+  transition: opacity .2s, transform .15s;
+}
+.qx-btn-xhs:hover, .qx-btn-dy:hover { opacity: .88; transform: translateY(-2px); }
+.qx-btn-xhs { background: #ff2442; color: #fff; }
+.qx-btn-dy { background: rgba(255,255,255,.18); color: #fff; border: 1.5px solid rgba(255,255,255,.5); }
+.qx-cta-note { font-size: 13px; color: rgba(255,255,255,.8); margin-bottom: 20px; }
+.qx-biz { font-size: 12px; color: rgba(255,255,255,.6); padding-top: 16px; border-top: 1px solid rgba(255,255,255,.15); }
