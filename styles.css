@@ -678,7 +678,7 @@ body.offwork .earnings strong {
 /* ✅ 右下角悬浮商务合作按钮 */
 .fab-container {
   position: fixed;
-  bottom: 20px;
+  bottom: 30px;
   right: 24px;
   z-index: 9999;
   display: flex;
@@ -860,10 +860,16 @@ body.offwork .earnings strong {
   border-color: rgba(255, 255, 255, 0.42);
 }
 
-.share-whatsapp:hover {
-  background: rgba(7, 193, 96, 0.2);
-  border-color: rgba(7, 193, 96, 0.55);
-  color: #7fffb0;
+.share-install:hover {
+  background: rgba(252, 163, 17, 0.18);
+  border-color: rgba(252, 163, 17, 0.5);
+  color: var(--accent);
+}
+
+.share-xhs:hover {
+  background: rgba(255, 36, 66, 0.18);
+  border-color: rgba(255, 36, 66, 0.5);
+  color: #ff92a6;
 }
 
 .share-github:hover {
@@ -875,6 +881,68 @@ body.offwork .earnings strong {
   background: rgba(255, 106, 0, 0.2);
   border-color: rgba(255, 106, 0, 0.5);
   color: #ff8833;
+}
+
+.share-note {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.62);
+  letter-spacing: 0.04em;
+  text-align: center;
+}
+
+.contact-band {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.contact-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 40px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+
+.contact-chip:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.contact-chip:first-child:hover {
+  background: rgba(7, 193, 96, 0.18);
+  border-color: rgba(7, 193, 96, 0.5);
+  color: #8ef0b6;
+}
+
+.contact-chip:nth-child(2):hover {
+  background: rgba(252, 163, 17, 0.18);
+  border-color: rgba(252, 163, 17, 0.5);
+  color: var(--accent);
+}
+
+.contact-chip:nth-child(3):hover {
+  background: rgba(255, 36, 66, 0.18);
+  border-color: rgba(255, 36, 66, 0.5);
+  color: #ff92a6;
+}
+
+.contact-chip:nth-child(4):hover {
+  background: rgba(0, 200, 200, 0.14);
+  border-color: rgba(0, 230, 230, 0.45);
+  color: #8cf7ff;
 }
 
 .seo-desc {
@@ -893,6 +961,12 @@ body.offwork .earnings strong {
   }
   .share-footer {
     padding: 12px 16px 4px;
+  }
+  .contact-band {
+    width: 100%;
+  }
+  .contact-chip {
+    width: 100%;
   }
 }
 

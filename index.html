@@ -233,7 +233,7 @@
             <span class="fab-item-icon">🎵</span>
             <span class="fab-item-text">抖音</span>
           </a>
-          <button class="fab-item fab-install" id="installAppBtn" type="button" hidden>
+          <button class="fab-item fab-install" id="installAppBtn" type="button">
             <span class="fab-item-icon">📲</span>
             <span class="fab-item-text">安装到桌面</span>
           </button>
@@ -250,11 +250,10 @@
           <span class="share-label">👋 发给同事，一起摸鱼</span>
           <div class="share-buttons">
             <button class="share-btn share-save" id="savePosterBtn" onclick="handleSavePoster()">🖼 保存桌面图</button>
+            <button class="share-btn share-install" id="installShareBtn" onclick="triggerInstallFromFooter()">📲 安装到桌面</button>
             <button class="share-btn share-copy" id="copyLinkBtn" onclick="handleCopyLink()">🔗 复制链接</button>
             <button class="share-btn share-mail" onclick="handleEmailShare()">✉️ 邮件发送</button>
-            <a class="share-btn share-whatsapp"
-              href="https://wa.me/?text=%E4%B8%8B%E7%8F%AD%E5%80%92%E8%AE%A1%E6%97%B6%E6%91%B8%E9%B1%BC%E7%A5%9E%E5%99%A8%EF%BC%8C%E6%89%93%E5%B7%A5%E4%BA%BA%E5%BF%85%E5%A4%87%EF%BC%81%20https%3A%2F%2Fqingxihub.com%2Ftimer%2F"
-              target="_blank" rel="noopener noreferrer">🟢 WhatsApp</a>
+            <button class="share-btn share-xhs" id="copyXhsBtn" onclick="handleCopyXhsShare()">📕 小红书文案</button>
             <a class="share-btn share-github"
               href="https://github.com/qingxi2058/qingxi-countdown-timer"
               target="_blank" rel="noopener noreferrer">🐙 GitHub</a>
@@ -262,6 +261,13 @@
               href="https://service.weibo.com/share/share.php?url=https%3A%2F%2Fqingxihub.com%2Ftimer%2F&title=%E4%B8%8B%E7%8F%AD%E5%80%92%E8%AE%A1%E6%97%B6%E6%91%B8%E9%B1%BC%E7%A5%9E%E5%99%A8%EF%BC%8C%E6%89%93%E5%B7%A5%E4%BA%BA%E5%BF%85%E5%A4%87%EF%BC%81%E5%AE%9E%E6%97%B6%E5%80%92%E8%AE%A1%E6%97%B6%2B%E9%AA%82%E4%BA%BA%E5%BC%B9%E5%B9%95%E8%A7%A3%E5%8E%8B%EF%BC%8C%E8%BF%98%E8%83%BD%E7%9C%8B%E4%BB%8A%E5%A4%A9%E8%B5%9A%E4%BA%86%E5%A4%9A%E5%B0%91%E9%92%B1+%23%E6%89%93%E5%B7%A5%E4%BA%BA+%23%E6%91%B8%E9%B1%BC"
               target="_blank" rel="noopener noreferrer">🌐 微博分享</a>
           </div>
+        </div>
+        <p class="share-note">想把它当成实时小工具放在电脑上，请点“安装到桌面”，不是只保存图片。</p>
+        <div class="contact-band">
+          <button class="contact-chip" type="button" onclick="copyWechat()">💬 微信：qingxi20250501</button>
+          <a class="contact-chip" href="mailto:zhangxin19940203@gmail.com?subject=下班倒计时合作咨询">✉️ 邮箱联系</a>
+          <a class="contact-chip" href="https://xhslink.com/m/3pdBcBDfYmx" target="_blank" rel="noopener noreferrer">📕 小红书主页</a>
+          <a class="contact-chip" href="https://v.douyin.com/fZNLm0iCwfA/" target="_blank" rel="noopener noreferrer">🎵 抖音主页</a>
         </div>
         <!-- SEO关键词文案：对用户展示但同时被搜索引擎收录 -->
         <p class="seo-desc">
@@ -401,6 +407,46 @@
           '链接：https://qingxihub.com/timer/'
         );
         window.location.href = 'mailto:?subject=' + subject + '&body=' + body;
+      }
+
+      function triggerInstallFromFooter() {
+        var installBtn = document.getElementById('installAppBtn');
+        if (installBtn) {
+          installBtn.click();
+        }
+      }
+
+      function handleCopyXhsShare() {
+        var text =
+          '打工人桌面摸鱼神器分享给你：\\n' +
+          '这个下班倒计时可以直接看实时倒计时、今日工资进度，还能装到桌面，像独立小工具一样打开。\\n\\n' +
+          '链接：https://qingxihub.com/timer/\\n\\n' +
+          '#打工人摸鱼 #下班倒计时 #效率工具 #桌面工具 #清溪AI';
+
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(function() {
+            showXhsToast();
+          }).catch(function() {
+            fallbackCopy(text);
+            showXhsToast();
+          });
+        } else {
+          fallbackCopy(text);
+          showXhsToast();
+        }
+      }
+
+      function showXhsToast() {
+        var btn = document.getElementById('copyXhsBtn');
+        var orig = btn.textContent;
+        btn.textContent = '✅ 已复制小红书文案';
+        btn.style.background = 'rgba(255,36,66,0.18)';
+        btn.style.borderColor = 'rgba(255,36,66,0.5)';
+        setTimeout(function() {
+          btn.textContent = orig;
+          btn.style.background = '';
+          btn.style.borderColor = '';
+        }, 2500);
       }
 
       function handleSavePoster() {
