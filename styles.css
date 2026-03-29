@@ -767,10 +767,15 @@ body.offwork .earnings strong {
   box-shadow: 0 4px 16px rgba(0,0,0,0.35);
 }
 
+.fab-item[hidden] {
+  display: none;
+}
+
 .fab-item:hover { transform: translateX(-4px); }
 
 .fab-xhs:hover  { border-color: rgba(255, 60, 60, 0.6); background: rgba(255, 60, 60, 0.18); }
 .fab-dy:hover   { border-color: rgba(0, 230, 230, 0.5); background: rgba(0, 200, 200, 0.12); }
+.fab-install:hover { border-color: rgba(252, 163, 17, 0.6); background: rgba(252, 163, 17, 0.16); color: var(--accent); }
 .fab-wx:hover   { border-color: rgba(7, 193, 96, 0.6); background: rgba(7, 193, 96, 0.15); color: #07c160; }
 .fab-email:hover{ border-color: rgba(252, 163, 17, 0.6); background: rgba(252, 163, 17, 0.15); color: var(--accent); }
 
@@ -842,6 +847,28 @@ body.offwork .earnings strong {
   background: rgba(57, 255, 20, 0.15);
   border-color: rgba(57, 255, 20, 0.45);
   color: var(--neon-green);
+}
+
+.share-save:hover {
+  background: rgba(252, 163, 17, 0.18);
+  border-color: rgba(252, 163, 17, 0.5);
+  color: var(--accent);
+}
+
+.share-mail:hover {
+  background: rgba(255, 255, 255, 0.14);
+  border-color: rgba(255, 255, 255, 0.42);
+}
+
+.share-whatsapp:hover {
+  background: rgba(7, 193, 96, 0.2);
+  border-color: rgba(7, 193, 96, 0.55);
+  color: #7fffb0;
+}
+
+.share-github:hover {
+  background: rgba(255, 255, 255, 0.16);
+  border-color: rgba(255, 255, 255, 0.5);
 }
 
 .share-weibo:hover {

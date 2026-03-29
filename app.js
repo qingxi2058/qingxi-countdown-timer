@@ -10,6 +10,7 @@ const penaltyEl = document.querySelector("#penalty");
 const toastEl = document.querySelector("#toast");
 const barrageEl = document.querySelector("#barrage");
 const bodyEl = document.body;
+const installAppBtn = document.querySelector("#installAppBtn");
 
 const SETTINGS_KEY = "offwork-clock-settings";
 const MONEY_MASK = "****";
@@ -33,6 +34,7 @@ let barrageTimer = null;
 let salaryVisible = false;
 let storedSalaryValue = "";
 let lastThirtyReminderKey = null;
+let deferredInstallPrompt = null;
 
 function parseTime(value) {
   if (!value || !value.includes(":")) {
@@ -132,6 +134,32 @@ function showToast(message) {
   toastTimer = window.setTimeout(() => {
     toastEl.classList.remove("show");
   }, 2400);
+}
+
+function updateInstallButtonVisibility(visible) {
+  if (!installAppBtn) {
+    return;
+  }
+  installAppBtn.hidden = !visible;
+}
+
+function isStandaloneMode() {
+  return (
+    window.matchMedia("(display-mode: standalone)").matches ||
+    window.navigator.standalone === true
+  );
+}
+
+function registerServiceWorker() {
+  if (!("serviceWorker" in navigator)) {
+    return;
+  }
+
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("sw.js").catch((error) => {
+      console.warn("Service worker registration failed", error);
+    });
+  });
 }
 
 function createBarrageItem() {
@@ -296,6 +324,40 @@ if (remindThirtyInput) {
     saveSettings();
   });
 }
+
+window.addEventListener("beforeinstallprompt", (event) => {
+  event.preventDefault();
+  deferredInstallPrompt = event;
+  updateInstallButtonVisibility(true);
+});
+
+window.addEventListener("appinstalled", () => {
+  deferredInstallPrompt = null;
+  updateInstallButtonVisibility(false);
+  showToast("已添加到桌面，之后可以像独立应用一样打开");
+});
+
+if (installAppBtn) {
+  installAppBtn.addEventListener("click", async () => {
+    if (deferredInstallPrompt) {
+      deferredInstallPrompt.prompt();
+      await deferredInstallPrompt.userChoice.catch(() => null);
+      deferredInstallPrompt = null;
+      updateInstallButtonVisibility(false);
+      return;
+    }
+
+    if (isStandaloneMode()) {
+      showToast("已经安装好了，桌面或应用列表里可以直接打开");
+      return;
+    }
+
+    showToast("请点浏览器地址栏里的安装图标，或在菜单里选“安装应用”");
+  });
+}
+
+registerServiceWorker();
+updateInstallButtonVisibility(false);
 
 window.setInterval(tick, 200);
 window.setTimeout(tick, 0);
