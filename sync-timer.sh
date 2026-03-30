@@ -20,6 +20,7 @@ rsync -av --delete \
   --exclude='package.json' \
   --exclude='metadata.json' \
   --exclude='README.md' \
+  --exclude='vercel.json' \
   --exclude='*.save' \
   --exclude='sync-timer.sh' \
   "$SRC/" "$DST/"
