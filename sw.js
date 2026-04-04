@@ -1,10 +1,10 @@
-const CACHE_NAME = "offwork-clock-v3";
+const CACHE_NAME = "offwork-clock-v4";
 const STATIC_ASSETS = [
   "./",
   "./index.html",
   "./wallpaper.html",
-  "./styles.css?v=20260404-1545",
-  "./app.js?v=20260404-1545",
+  "./styles.css?v=20260404-1715",
+  "./app.js?v=20260404-1715",
   "./manifest.webmanifest",
   "./pwa-icon-192.png",
   "./pwa-icon-512.png",

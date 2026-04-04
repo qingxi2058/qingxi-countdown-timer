@@ -411,5 +411,5 @@ if (displayModeQuery.addEventListener) {
   displayModeQuery.addListener(syncStandaloneLayout);
 }
 
-window.setInterval(tick, 200);
+window.setInterval(tick, 1000);
 window.setTimeout(tick, 0);
