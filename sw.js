@@ -1,10 +1,10 @@
-const CACHE_NAME = "offwork-clock-v2";
+const CACHE_NAME = "offwork-clock-v3";
 const STATIC_ASSETS = [
   "./",
   "./index.html",
   "./wallpaper.html",
-  "./styles.css",
-  "./app.js",
+  "./styles.css?v=20260404-1545",
+  "./app.js?v=20260404-1545",
   "./manifest.webmanifest",
   "./pwa-icon-192.png",
   "./pwa-icon-512.png",
@@ -43,7 +43,8 @@ self.addEventListener("fetch", (event) => {
   const isFreshAsset =
     requestUrl.pathname.endsWith("/index.html") ||
     requestUrl.pathname.endsWith("/wallpaper.html") ||
-    requestUrl.pathname.endsWith("/app.js");
+    requestUrl.pathname.endsWith("/app.js") ||
+    requestUrl.pathname.endsWith("/styles.css");
 
   if (!sameOrigin) {
     event.respondWith(fetch(event.request));
