@@ -8,6 +8,13 @@
 
 - https://qingxi-countdown-timer.vercel.app
 
+快速部署（最省事）：
+
+- 一键部署（Vercel）：https://vercel.com/new/clone?repository-url=https://github.com/qingxi2058/qingxi-countdown-timer
+- 一行命令部署（已安装并登录 Vercel CLI 后）：
+  `npx vercel --prod --yes`
+- 如果你已经把仓库接到 Vercel，后续只要 `git push` 就会自动更新线上版本
+
 主要特点：
 
 - 实时显示距离下班还有多久

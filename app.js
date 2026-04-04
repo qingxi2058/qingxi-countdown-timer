@@ -37,6 +37,7 @@ let salaryVisible = false;
 let storedSalaryValue = "";
 let lastThirtyReminderKey = null;
 let deferredInstallPrompt = null;
+let installPromptWaiters = [];
 
 function parseTime(value) {
   if (!value || !value.includes(":")) {
@@ -140,11 +141,19 @@ function isChromiumBrowser() {
 }
 
 async function tryInstallApp() {
-  if (deferredInstallPrompt) {
-    deferredInstallPrompt.prompt();
-    await deferredInstallPrompt.userChoice.catch(() => null);
-    deferredInstallPrompt = null;
-    updateInstallButtonVisibility(false);
+  const promptEvent = deferredInstallPrompt || (await waitForInstallPrompt(1800));
+  if (promptEvent) {
+    deferredInstallPrompt = promptEvent;
+    promptEvent.prompt();
+    const installResult = await promptEvent.userChoice
+      .catch(() => null)
+      .finally(() => {
+        deferredInstallPrompt = null;
+        updateInstallButtonVisibility(false);
+      });
+    if (installResult && installResult.outcome === "dismissed") {
+      showToast("你刚才取消了安装，再点一次可以继续");
+    }
     return;
   }
 
@@ -154,11 +163,28 @@ async function tryInstallApp() {
   }
 
   if (isChromiumBrowser()) {
-    showToast("请点地址栏右上角下载箭头图标，再点“安装应用”");
+    showToast("没弹窗时：点地址栏右上角⬇︎，再点“安装应用”");
     return;
   }
 
   showToast("当前浏览器不支持一键安装，请改用 Chrome 或 Edge 打开");
+}
+
+function waitForInstallPrompt(timeoutMs = 1500) {
+  if (deferredInstallPrompt) {
+    return Promise.resolve(deferredInstallPrompt);
+  }
+  return new Promise((resolve) => {
+    const timer = window.setTimeout(() => {
+      installPromptWaiters = installPromptWaiters.filter((item) => item !== resolver);
+      resolve(null);
+    }, timeoutMs);
+    const resolver = (event) => {
+      window.clearTimeout(timer);
+      resolve(event);
+    };
+    installPromptWaiters.push(resolver);
+  });
 }
 
 function isStandaloneMode() {
@@ -350,6 +376,10 @@ if (remindThirtyInput) {
 window.addEventListener("beforeinstallprompt", (event) => {
   event.preventDefault();
   deferredInstallPrompt = event;
+  for (const resolver of installPromptWaiters) {
+    resolver(event);
+  }
+  installPromptWaiters = [];
   updateInstallButtonVisibility(true);
 });
 
