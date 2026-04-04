@@ -503,8 +503,9 @@
         try {
           var p = getBeijingNowParts();
           var weekdays = ['日','一','二','三','四','五','六'];
+          var weekdayIndex = new Date(Date.UTC(p.year, p.month - 1, p.day, p.hour, p.minute, p.second)).getUTCDay();
           document.getElementById('pcDate').textContent =
-            p.year + '年' + p.month + '月' + p.day + '日 · 星期' + weekdays[new Date().getDay()];
+            p.year + '年' + p.month + '月' + p.day + '日 · 星期' + weekdays[weekdayIndex];
           document.getElementById('pcTime').textContent =
             document.getElementById('countdown').textContent;
           document.getElementById('pcStatus').textContent =

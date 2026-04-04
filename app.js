@@ -18,6 +18,7 @@ const THIRTY_MINUTES_MS = 30 * 60 * 1000;
 const WORK_DAYS_PER_MONTH = 22;
 const HOURS_PER_DAY = 8;
 const WORK_MINUTES_PER_MONTH = WORK_DAYS_PER_MONTH * HOURS_PER_DAY * 60;
+const BEIJING_OFFSET_MS = 8 * 60 * 60 * 1000;
 const barrageLines = [
   "快滚回家搞副业！",
   "还不走？老板给你加钱了吗？快滚去搞副业！",
@@ -48,30 +49,14 @@ function parseTime(value) {
 }
 
 function getBeijingNowParts() {
-  const formatter = new Intl.DateTimeFormat("en-US", {
-    timeZone: "Asia/Shanghai",
-    year: "numeric",
-    month: "2-digit",
-    day: "2-digit",
-    hour: "2-digit",
-    minute: "2-digit",
-    second: "2-digit",
-    hour12: false
-  });
-  const parts = formatter.formatToParts(new Date());
-  const map = {};
-  for (const part of parts) {
-    if (part.type !== "literal") {
-      map[part.type] = part.value;
-    }
-  }
+  const beijingDate = new Date(Date.now() + BEIJING_OFFSET_MS);
   return {
-    year: Number(map.year),
-    month: Number(map.month),
-    day: Number(map.day),
-    hour: Number(map.hour),
-    minute: Number(map.minute),
-    second: Number(map.second)
+    year: beijingDate.getUTCFullYear(),
+    month: beijingDate.getUTCMonth() + 1,
+    day: beijingDate.getUTCDate(),
+    hour: beijingDate.getUTCHours(),
+    minute: beijingDate.getUTCMinutes(),
+    second: beijingDate.getUTCSeconds()
   };
 }
 
