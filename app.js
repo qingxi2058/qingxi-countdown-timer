@@ -11,6 +11,7 @@ const toastEl = document.querySelector("#toast");
 const barrageEl = document.querySelector("#barrage");
 const bodyEl = document.body;
 const installAppBtn = document.querySelector("#installAppBtn");
+const installShareBtn = document.querySelector("#installShareBtn");
 
 const SETTINGS_KEY = "offwork-clock-settings";
 const MONEY_MASK = "****";
@@ -122,10 +123,42 @@ function showToast(message) {
 }
 
 function updateInstallButtonVisibility(visible) {
-  if (!installAppBtn) {
+  const installButtons = [installAppBtn, installShareBtn].filter(Boolean);
+  if (!installButtons.length) {
     return;
   }
-  installAppBtn.classList.toggle("is-ready", visible);
+  for (const button of installButtons) {
+    button.classList.toggle("is-ready", visible);
+  }
+}
+
+function isChromiumBrowser() {
+  const ua = navigator.userAgent || "";
+  const isChrome = /Chrome|Edg|OPR/.test(ua);
+  const notIOS = !/CriOS|FxiOS/.test(ua);
+  return isChrome && notIOS;
+}
+
+async function tryInstallApp() {
+  if (deferredInstallPrompt) {
+    deferredInstallPrompt.prompt();
+    await deferredInstallPrompt.userChoice.catch(() => null);
+    deferredInstallPrompt = null;
+    updateInstallButtonVisibility(false);
+    return;
+  }
+
+  if (isStandaloneMode()) {
+    showToast("已经安装好了，桌面或应用列表里可以直接打开");
+    return;
+  }
+
+  if (isChromiumBrowser()) {
+    showToast("请点地址栏右上角下载箭头图标，再点“安装应用”");
+    return;
+  }
+
+  showToast("当前浏览器不支持一键安装，请改用 Chrome 或 Edge 打开");
 }
 
 function isStandaloneMode() {
@@ -133,6 +166,10 @@ function isStandaloneMode() {
     window.matchMedia("(display-mode: standalone)").matches ||
     window.navigator.standalone === true
   );
+}
+
+function syncStandaloneLayout() {
+  bodyEl.classList.toggle("standalone-app", isStandaloneMode());
 }
 
 function registerServiceWorker() {
@@ -323,26 +360,26 @@ window.addEventListener("appinstalled", () => {
 });
 
 if (installAppBtn) {
-  installAppBtn.addEventListener("click", async () => {
-    if (deferredInstallPrompt) {
-      deferredInstallPrompt.prompt();
-      await deferredInstallPrompt.userChoice.catch(() => null);
-      deferredInstallPrompt = null;
-      updateInstallButtonVisibility(false);
-      return;
-    }
+  installAppBtn.addEventListener("click", () => {
+    void tryInstallApp();
+  });
+}
 
-    if (isStandaloneMode()) {
-      showToast("已经安装好了，桌面或应用列表里可以直接打开");
-      return;
-    }
-
-    showToast("请点浏览器地址栏里的安装图标，或在菜单里选“安装应用”");
+if (installShareBtn) {
+  installShareBtn.addEventListener("click", () => {
+    void tryInstallApp();
   });
 }
 
 registerServiceWorker();
 updateInstallButtonVisibility(false);
+syncStandaloneLayout();
+const displayModeQuery = window.matchMedia("(display-mode: standalone)");
+if (displayModeQuery.addEventListener) {
+  displayModeQuery.addEventListener("change", syncStandaloneLayout);
+} else if (displayModeQuery.addListener) {
+  displayModeQuery.addListener(syncStandaloneLayout);
+}
 
 window.setInterval(tick, 200);
 window.setTimeout(tick, 0);

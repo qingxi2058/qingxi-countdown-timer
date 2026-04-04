@@ -699,6 +699,11 @@
       }
     }
 
+    const guideMode = new URLSearchParams(location.search).get('guide') === '1';
+    if (guideMode) {
+      document.getElementById('helpOverlay').classList.add('show');
+    }
+
     function copyWallpaperUrl() {
       // 生成当前壁纸页的绝对 URL（去掉 hash/query，确保指向 wallpaper.html）
       let url = location.href.split('?')[0].split('#')[0];

@@ -6,6 +6,8 @@ const STATIC_ASSETS = [
   "./styles.css",
   "./app.js",
   "./manifest.webmanifest",
+  "./pwa-icon-192.png",
+  "./pwa-icon-512.png",
   "./pwa-icon.svg",
   "./wechat-qr.png"
 ];
